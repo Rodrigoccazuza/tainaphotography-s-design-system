@@ -1,0 +1,22 @@
+/* Match light-on-dark logo spacing to the supplied dark-on-light PNG lockups. */
+#logo .logo-card.theme-dark.extended .brand-lockup {
+  --logo-size: clamp(30px, 3.15vw, 48px);
+}
+
+#logo .logo-card.theme-dark:not(.extended) .brand-lockup {
+  --logo-size: clamp(28px, 3.4vw, 54px);
+}
+
+#logo .logo-card.theme-dark .brand-lockup {
+  transform-origin: center;
+}
+
+@media (max-width: 760px) {
+  #logo .logo-card.theme-dark.extended .brand-lockup {
+    --logo-size: clamp(28px, 8.2vw, 42px);
+  }
+
+  #logo .logo-card.theme-dark:not(.extended) .brand-lockup {
+    --logo-size: clamp(26px, 8.7vw, 44px);
+  }
+}
