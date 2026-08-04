@@ -1,0 +1,61 @@
+/* Exact dark logo assets supplied for light-background applications. */
+.logo-card.theme-light .brand-lockup,
+.safe-zone .brand-lockup {
+  display: none !important;
+}
+
+.logo-card.theme-light::after,
+.safe-zone::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.logo-card.theme-light.extended::after {
+  width: min(78%, 500px);
+  height: 62%;
+  background-image: url("../assets/logos/taina-logo-dark-extended.png");
+}
+
+.logo-card.theme-light:not(.extended)::after {
+  width: min(82%, 560px);
+  height: 46%;
+  background-image: url("../assets/logos/taina-logo-dark-horizontal.png");
+}
+
+.safe-zone::before {
+  z-index: 0;
+}
+
+.safe-zone::after {
+  width: 72%;
+  height: 38%;
+  background-image: url("../assets/logos/taina-logo-dark-horizontal.png");
+}
+
+.logo-card.theme-light .logo-label,
+.logo-card.theme-light .logo-use,
+.safe-zone .measure {
+  z-index: 2;
+}
+
+@media (max-width: 760px) {
+  .logo-card.theme-light.extended::after {
+    width: 84%;
+    height: 58%;
+  }
+
+  .logo-card.theme-light:not(.extended)::after {
+    width: 88%;
+    height: 42%;
+  }
+
+  .safe-zone::after {
+    width: 76%;
+    height: 34%;
+  }
+}
