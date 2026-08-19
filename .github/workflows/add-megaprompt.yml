@@ -1,0 +1,201 @@
+name: Add Taina Mega Prompt
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-megaprompt.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch brand manual
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re, html
+
+          path = Path('index.html')
+          text = path.read_text()
+          if 'id="implementation-prompt"' in text:
+              raise SystemExit('Mega prompt already present')
+
+          prompt = '''You are implementing the Tainá Borges Photography design system for [PLATFORM / FORMAT].
+
+PROJECT INPUTS
+- Goal: [WHAT THIS MUST ACHIEVE]
+- Deliverable: [WEBSITE, SOCIAL POST, EMAIL, DECK, PROPOSAL, AD, VIDEO COVER, FIGMA, CANVA, FRONT-END COMPONENT, OR OTHER]
+- Audience: [PRIMARY AUDIENCE]
+- Dimensions / breakpoint / duration: [REQUIREMENTS]
+- Technology or production tool: [STACK / PLATFORM]
+- Content supplied: [COPY, PHOTOS, LOGOS, DATA]
+- Accessibility, compliance, and deadline constraints: [CONSTRAINTS]
+
+SOURCE OF TRUTH
+Use only the confirmed Tainá Borges Photography design-system values below. Do not invent a color, font, logo version, spacing value, crop rule, motion rule, or brand behavior. If a required value is missing or disputed, mark it [NEEDS DECISION], preserve the placeholder, and ask a focused question before finalizing.
+
+BRAND FOUNDATION
+- Brand: Tainá Borges Photography.
+- Positioning: natural, location-led photography centered on people, place, atmosphere, and New York specificity.
+- Observed audience: travelers, couples, families, portrait clients, proposals, personal sessions, and people wanting an authentic visual record of New York.
+- Visual personality: grounded, warm, observant, intimate, confident.
+- Do: keep photography primary; use real NYC specificity; preserve authentic warmth and skin tone; combine strong display type with calm supporting copy; use generous spacing; write direct, sensory copy; adapt the same hierarchy to each channel.
+- Avoid: generic luxury language; heavy desaturation; generic presets; crowded layouts; decorative motion; rounded hero crops; drop shadows on photography; noisy logo placement; replacing the camera mark with a generic icon.
+
+CONFIRMED VISUAL TOKENS
+- Core dark / Asphalt: #161513.
+- Core light / Limestone: #E8E2D4.
+- Elevated paper: #F4EFE5.
+- Highest light / Chalk: #FBF8F1.
+- Taxi yellow: #DEA61F.
+- Brown token: #7E4834.
+- Logo-file brown: #874C38.
+- Brick: #A8552B.
+- Terracotta: #C75A4A.
+- Park: #4D5A2D.
+- Steel: #7E8B9E.
+- IMPORTANT: #7E4834 and #874C38 are both present in the current system. Do not silently merge them. Use #874C38 for the documented logo disc and mark the general brown-token role for review when relevant.
+- Display: Poppins 900 / Black.
+- Body and interface: Inter 300–600.
+- Technical labels and metadata: JetBrains Mono 400–500.
+- Desktop type references: Display 128, H1 72, H2 44, Body 16, Label 11.
+- Mobile display sizes currently use responsive CSS clamps. A complete fixed mobile type scale is not formally approved.
+- Spacing scale: 4, 8, 16, 24, 48, 96, 128 px.
+- Corner radius: 0–4 px default in the documented interface system.
+- Grid: flexible 12-column desktop logic with generous page gutters and a central readable content area.
+- Preferred image ratios: 4:5 portrait, 3:2 landscape, 1:1 selective, 16:9 hero only.
+
+LOGO SYSTEM
+- 01 Extended / light: T + B + camera above the light wordmark; use on asphalt, black, or protected dark photography.
+- 02 Horizontal / light: T + B + camera + light wordmark; use for dark navigation and landscape placements.
+- 03 Extended / dark: dark wordmark composition for light editorial surfaces.
+- 04 Horizontal / dark: dark horizontal composition for light navigation and documents.
+- Preserve at least one logo-circle diameter of clear space.
+- Minimum digital width: 180 px horizontal, 240 px extended.
+- Do not stretch, recolor individual elements, add shadows, rebuild the camera symbol, or place the mark on visually noisy photography.
+
+PHOTOGRAPHY DIRECTION
+- Photography is the primary atmospheric layer.
+- Prioritize natural, location-led, emotionally unforced images.
+- Preserve authentic warmth, skin tone, available light, and recognizable NYC color.
+- Curate varied sequences: portraits, couples, families, city, beach, environmental details, and behind-the-camera moments.
+- Occasional black-and-white frames may be used for editorial pacing.
+- Avoid heavy desaturation, generic presets, excessive smoothing, rounded hero crops, and drop shadows.
+- When text overlays photography, use a protection gradient only as needed for readability.
+
+CONTENT VOICE
+- English-first documentation with bilingual English / Portuguese interface examples where relevant.
+- Voice: direct, observational, intimate, calm, concrete.
+- Prefer: “I photograph the small thing nobody else noticed.”
+- Avoid inflated language such as “breathtaking timeless works of art.”
+- CTA examples: “Book a session,” “See the photographs,” “Send a note.”
+- Translate meaning and rhythm rather than word-for-word structure.
+
+MOTION
+- Micro interaction: about 180 ms.
+- Default state change: about 320 ms.
+- Section reveal: about 720 ms.
+- Cinematic transition: 900–1200 ms.
+- Scroll reveals use soft fade / translate movement with restrained staggering.
+- The approved entry preloader uses a New York brownstone brick wall that dismantles to reveal the site.
+- Respect prefers-reduced-motion and remove non-essential motion when requested.
+- Avoid bounce, spring, overshoot, or continuous decorative motion.
+
+IMPLEMENTATION METHOD
+1. Audit the requested platform, format, dimensions, safe areas, interaction states, export limits, and accessibility needs.
+2. Map every visual decision to a confirmed token or rule above.
+3. Start with photography and content purpose before adding interface styling.
+4. Build hierarchy with Poppins for impact, Inter for reading, and JetBrains Mono only for metadata / technical labels.
+5. Keep dark Asphalt and light Limestone as the primary environmental surfaces. Use Taxi Yellow as the signature accent.
+6. Use only the confirmed spacing scale. Preserve generous whitespace and a central readable content area.
+7. Prevent horizontal overflow at every viewport width.
+8. Use the correct logo for its background, including clear space and minimum-size rules.
+9. Render actual reusable components when the format supports them: buttons, cards, tags, form fields, navigation, language controls, pricing blocks, lightbox / modal behavior.
+10. Adapt the composition to the channel’s purpose rather than merely resizing it.
+11. Preserve authentic photography crops and do not cover important faces or subjects with interface content.
+12. Mark unsupported channels, missing source files, or unresolved values as [NEEDS DECISION].
+
+OUTPUT CONTRACT
+Return:
+A. a short requirement-to-token mapping;
+B. the finished implementation or production-ready specification;
+C. responsive / alternate-format behavior;
+D. logo and photography usage choices;
+E. accessibility, contrast, focus, alt-text, and reduced-motion checks;
+F. a list of every [NEEDS DECISION] item;
+G. a final pre-publish checklist result.
+
+FINAL QUALITY GATE
+Confirm:
+- correct Tainá Borges Photography positioning and audience;
+- photography remains the primary visual layer;
+- correct logo lockup for the background;
+- no invented hex values;
+- Poppins / Inter / JetBrains Mono roles are correct;
+- spacing-scale compliance;
+- preferred crop ratio is appropriate for the channel;
+- authentic skin tone and color treatment are preserved;
+- copy remains direct and observational;
+- no horizontal overflow;
+- mobile layout is explicitly reviewed;
+- contrast, focus, alt text, and reduced motion are checked;
+- the brown-token vs logo-brown difference has not been silently reconciled;
+- every unknown is labeled [NEEDS DECISION].
+
+Do not claim completion while a required unknown value has been silently invented.'''
+
+          section = f'''
+<section class="section" id="implementation-prompt"><div class="reading"><div class="eyebrow">08 / Mega prompt</div><h2>Use the system on <em>any format.</em></h2><p class="lede">Copy this prompt into ChatGPT, Claude, Codex, Figma AI, Canva, or another production workflow. Replace only the bracketed project inputs. The confirmed Tainá system remains the source of truth.</p><div class="rule"></div><div class="code-wrap"><button class="copy-btn" id="copyMegaPrompt" type="button">Copy mega prompt</button><pre class="code mega-prompt-code" id="megaPrompt">{html.escape(prompt)}</pre></div></div></section>
+'''
+
+          # Add sidebar nav before divergences/audit/open decisions.
+          nav_link = '<a href="#implementation-prompt">08 Mega prompt</a>'
+          nav_patterns = [r'(<a[^>]+href="#divergences"[^>]*>)', r'(<a[^>]+href="#audit"[^>]*>)', r'(<a[^>]+href="#open-decisions"[^>]*>)']
+          for pat in nav_patterns:
+              m = re.search(pat, text, flags=re.I)
+              if m:
+                  text = text[:m.start()] + nav_link + text[m.start():]
+                  break
+
+          # Renumber visible sidebar items where the current layout uses simple text labels.
+          replacements = {
+              '>08 Divergences<': '>09 Divergences<', '>09 Open decisions<': '>10 Open decisions<',
+              '>10 CSS tokens<': '>11 CSS tokens<', '>11 Checklist<': '>12 Checklist<',
+              '>08 Audit<': '>09 Audit<'
+          }
+          for old,new in replacements.items(): text = text.replace(old,new)
+
+          # Insert section before the divergences/audit/open-decisions section.
+          candidates = [r'<section[^>]+id="divergences"', r'<section[^>]+id="audit"', r'<section[^>]+id="open-decisions"']
+          inserted = False
+          for pat in candidates:
+              m = re.search(pat, text, flags=re.I)
+              if m:
+                  text = text[:m.start()] + section + text[m.start():]
+                  inserted = True
+                  break
+          if not inserted:
+              text = text.replace('</main>', section + '\n</main>', 1)
+
+          css = '''\n.mega-prompt-code{max-height:760px;white-space:pre-wrap;overflow-wrap:anywhere;padding-top:58px}\n#implementation-prompt .code-wrap{position:relative}\n#implementation-prompt .copy-btn{z-index:2}\n@media(max-width:520px){.mega-prompt-code{max-height:none;font-size:9.5px;line-height:1.65;padding:56px 16px 18px}}\n'''
+          text = text.replace('</style>', css + '</style>', 1)
+
+          js = '''\n<script>\n(()=>{const b=document.getElementById('copyMegaPrompt'),p=document.getElementById('megaPrompt');if(!b||!p)return;b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(p.innerText);const old=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=old,1500)}catch(e){}})})();\n</script>\n'''
+          text = text.replace('</body>', js + '</body>', 1)
+          path.write_text(text)
+          PY
+      - name: Commit mega prompt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add Tainá implementation mega prompt"
+          git push origin main
