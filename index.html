@@ -1,36 +1,243 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Tainá Borges Photography | Design System</title>
-<meta content="Tainá Borges Photography brand and interface design system documentation." name="description"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200..900&amp;family=Poppins:wght@300;400;600;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tainá Borges Photography — Brand Manual</title>
+<meta name="description" content="Tainá Borges Photography brand manual and design system extracted from the current website and design-system repository." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Poppins:ital,wght@0,800;0,900;1,700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --asphalt:#161513;
+  --black:#080807;
+  --limestone:#E8E2D4;
+  --paper:#F4EFE5;
+  --chalk:#FBF8F1;
+  --taxi:#DEA61F;
+  --brown-token:#7E4834;
+  --brown-logo:#874C38;
+  --brick:#A8552B;
+  --terracotta:#C75A4A;
+  --park:#4D5A2D;
+  --steel:#7E8B9E;
+  --line:rgba(232,226,212,.14);
+  --muted:rgba(232,226,212,.58);
+  --soft:rgba(232,226,212,.74);
+  --space-1:4px;--space-2:8px;--space-3:16px;--space-4:24px;--space-5:48px;--space-6:96px;--space-7:128px;
+  --display:'Poppins',Arial,sans-serif;
+  --sans:'Inter',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--black);overflow-x:hidden}
+body{margin:0;background:var(--black);color:var(--limestone);font-family:var(--sans);overflow-x:hidden}
+button,input{font:inherit}
+a{color:inherit}
+img,svg{max-width:100%;display:block}
+::selection{background:var(--taxi);color:var(--black)}
 
-<link href="styles/base.css" rel="stylesheet"/>
-<link href="styles/system.css?v=20260804-2" rel="stylesheet"/>
-<link href="styles/logo-assets.css?v=20260804-1" rel="stylesheet"/>
-<link href="styles/logo-balance.css?v=20260804-1" rel="stylesheet"/>
-<link href="styles/preloader.css?v=20260804-1" rel="stylesheet"/>
-<link href="styles/mobile-overflow-fixes.css?v=20260819-2" rel="stylesheet"/>
-<noscript><style>.site-preloader{display:none!important}body{overflow:auto!important}</style></noscript>
+/* fixed manual navigation */
+.sidebar{position:fixed;inset:0 auto 0 0;width:248px;border-right:1px solid var(--line);background:rgba(8,8,7,.96);z-index:20;display:flex;flex-direction:column;padding:30px 24px 24px;backdrop-filter:blur(14px)}
+.side-brand{padding-bottom:28px;border-bottom:1px solid var(--line)}
+.side-mark{display:flex;gap:5px;align-items:center;margin-bottom:16px}.side-disc{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;color:#fff;font:900 14px/1 var(--display)}.side-disc.t{background:var(--taxi)}.side-disc.b{background:var(--brown-logo)}.side-disc.cam{background:#fff;color:#000;font-size:9px}
+.side-title{font:900 22px/.94 var(--display);letter-spacing:-.05em}.side-sub{margin-top:8px;color:var(--muted);font:500 9px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.side-nav{display:grid;margin-top:28px}.side-nav a{text-decoration:none;color:var(--muted);font:500 10px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;padding:11px 0;border-bottom:1px solid rgba(232,226,212,.07);transition:.2s ease}.side-nav a:hover,.side-nav a.active{color:var(--taxi);padding-left:8px}.side-foot{margin-top:auto;color:rgba(232,226,212,.36);font:400 8px/1.55 var(--mono)}
+
+main{margin-left:248px;min-width:0}.reading{width:min(920px,calc(100% - 80px));margin:0 auto}.section{padding:108px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}.section:first-child{padding-top:90px}.eyebrow{font:500 9px/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--taxi);margin-bottom:14px}.section h2{margin:0;max-width:800px;font:900 clamp(42px,6vw,76px)/.91 var(--display);letter-spacing:-.055em}.section h2 em{font-family:Georgia,serif;font-weight:400;color:var(--taxi)}.lede{font-size:18px;line-height:1.62;color:var(--soft);max-width:720px;margin:24px 0 0}.rule{height:1px;background:var(--line);margin:42px 0}.small{font:400 11px/1.6 var(--mono);color:var(--muted)}
+
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden}.hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 18% 18%,rgba(222,166,31,.12),transparent 34%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:auto,74px 74px,74px 74px;pointer-events:none}.hero .reading{position:relative}.hero-kicker{font:500 10px/1.3 var(--mono);letter-spacing:.17em;color:var(--taxi);text-transform:uppercase}.hero h1{font:900 clamp(62px,8vw,116px)/.82 var(--display);letter-spacing:-.075em;margin:30px 0 34px;max-width:840px}.hero h1 em{font-family:Georgia,serif;font-weight:400;color:var(--taxi)}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:end}.brand-meta{border-top:1px solid var(--line);padding-top:22px;display:grid;gap:10px}.brand-meta div{display:grid;grid-template-columns:140px 1fr;gap:20px}.brand-meta strong{font:500 9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.brand-meta span{font-size:15px;line-height:1.5}
+
+/* reusable layout */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.cards{display:grid;gap:14px}.card{border:1px solid var(--line);background:rgba(255,255,255,.018);padding:26px}.card-k{font:500 9px/1.4 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--taxi)}.card h3{font:800 24px/1.04 var(--display);letter-spacing:-.04em;margin:14px 0 10px}.card p{margin:0;color:var(--soft);font-size:14px;line-height:1.6}.split-list{border-top:1px solid var(--line)}.split-row{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}.split-row b{font:500 10px/1.4 var(--mono);color:var(--taxi)}.split-row p{margin:0;line-height:1.55;color:var(--soft)}
+
+/* logos: embedded HTML/SVG compositions, no external logo requests */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.logo-card{min-height:255px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);overflow:hidden}.logo-card.light{background:var(--paper);color:var(--black);border-color:rgba(22,21,19,.18)}.logo-card.dark{background:#050505}.logo-label{font:500 8px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:currentColor;opacity:.55}.lockup{--s:48px;display:inline-flex;align-items:center;gap:8px;max-width:100%;min-width:0}.lockup.stacked{display:flex;flex-direction:column;align-items:flex-start}.symbols{display:flex;gap:5px;align-items:center}.disc{width:var(--s);height:var(--s);border-radius:50%;display:grid;place-items:center;color:white;font:900 calc(var(--s)*.62)/1 var(--display);flex:0 0 auto}.disc.t{background:var(--taxi)}.disc.b{background:var(--brown-logo)}.disc.camera{background:white;color:black}.disc.camera.darkcam{background:black;color:white}.camera-svg{width:64%;height:auto}.wordmark{font:900 calc(var(--s)*.78)/.92 var(--display);letter-spacing:-.065em;white-space:nowrap}.stacked .wordmark{font-size:calc(var(--s)*1.34)}.dot{color:var(--taxi)}.logo-colorline{font:400 8px/1.6 var(--mono);opacity:.58}.logo-card.light .wordmark{color:#000}.logo-card.dark .wordmark{color:var(--limestone)}
+.logo-rule{display:grid;grid-template-columns:120px 1fr;gap:28px;padding:18px 0;border-top:1px solid var(--line)}.logo-rule:last-child{border-bottom:1px solid var(--line)}.logo-rule code{color:var(--taxi);font:500 9px/1.5 var(--mono)}.logo-rule p{margin:0;color:var(--soft);line-height:1.55}
+
+/* colors */
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.swatch{min-height:142px;padding:18px;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:space-between;color:#10100f}.swatch.darktxt{color:var(--limestone)}.swatch strong{font:800 18px/1 var(--display)}.swatch code{font:500 9px/1.4 var(--mono)}.token-table{border-top:1px solid var(--line)}.token-row{display:grid;grid-template-columns:150px 140px 1fr;gap:18px;padding:15px 0;border-bottom:1px solid var(--line);align-items:center}.token-row code{font:500 10px/1.4 var(--mono);color:var(--taxi)}.token-row span{color:var(--soft);font-size:13px}
+
+/* type + spacing */
+.type-row{display:grid;grid-template-columns:125px 1fr 180px;gap:24px;padding:20px 0;border-top:1px solid var(--line);align-items:start}.type-row:last-child{border-bottom:1px solid var(--line)}.type-row code{font:400 9px/1.5 var(--mono);color:var(--muted)}.sample-display{font:900 54px/.9 var(--display);letter-spacing:-.055em}.sample-h1{font:900 42px/.94 var(--display);letter-spacing:-.045em}.sample-h2{font:300 30px/1.12 var(--sans)}.sample-body{font:400 16px/1.55 var(--sans)}.sample-label{font:500 11px/1.4 var(--mono);letter-spacing:.15em;text-transform:uppercase}
+.space-row{display:grid;grid-template-columns:60px minmax(0,1fr) 90px;gap:16px;align-items:center;padding:11px 0}.space-row code{font:500 9px/1 var(--mono);color:var(--taxi)}.bar-wrap{height:14px;display:flex;align-items:center}.bar{height:6px;background:var(--limestone);max-width:100%}.space-row span:last-child{font:400 9px/1 var(--mono);color:var(--muted);text-transform:uppercase}
+
+/* actual components */
+.demo{background:var(--paper);color:var(--asphalt);padding:28px;border:1px solid rgba(22,21,19,.15)}.demo-head{display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid rgba(22,21,19,.17);padding-bottom:18px}.demo-logo{font:900 22px/.9 var(--display);letter-spacing:-.055em}.demo-logo i{color:var(--taxi);font-style:normal}.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{border:1px solid var(--asphalt);background:transparent;padding:12px 16px;text-transform:uppercase;font:500 9px/1 var(--mono);letter-spacing:.1em}.btn.primary{background:var(--taxi);border-color:var(--taxi)}.btn.dark{background:var(--asphalt);color:var(--paper)}.service-card{margin-top:22px;border:1px solid rgba(22,21,19,.2);padding:24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}.service-card h4{font:900 31px/.95 var(--display);letter-spacing:-.045em;margin:7px 0}.service-card p{margin:0;max-width:46ch;font-size:13px;line-height:1.55}.service-card .tag{font:500 8px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase}.field{margin-top:20px;display:grid;gap:7px}.field label{font:500 8px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}.field input{border:1px solid rgba(22,21,19,.28);background:transparent;padding:12px;width:100%;min-width:0}
+
+/* application */
+.application{border-top:1px solid var(--line);padding:24px 0;display:grid;grid-template-columns:130px 1fr;gap:28px}.application .channel{font:500 9px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--taxi)}.application h3{font:800 26px/1 var(--display);letter-spacing:-.04em;margin:0 0 10px}.application p{margin:0;color:var(--soft);line-height:1.6}.status{display:inline-block;margin-top:11px;border:1px solid rgba(222,166,31,.55);border-radius:999px;padding:5px 8px;font:500 8px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--taxi)}
+
+/* audit and missing */
+.audit-row{display:grid;grid-template-columns:66px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line)}.audit-row:last-child{border-bottom:1px solid var(--line)}.sev{width:max-content;border:1px solid rgba(222,166,31,.45);border-radius:999px;padding:5px 8px;font:500 7px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--taxi)}.audit-row h3{font:800 17px/1.15 var(--display);margin:0 0 6px}.audit-row p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.missing{display:grid;grid-template-columns:1fr 1fr;gap:32px 50px}.missing-item{padding-top:16px;border-top:1px solid var(--line)}.missing-num{font:500 8px/1 var(--mono);color:var(--taxi)}.missing-item h3{font:800 17px/1.1 var(--display);margin:12px 0 7px}.missing-item p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+
+/* tokens + checklist */
+.code-wrap{position:relative}.copy-btn{position:absolute;right:14px;top:14px;border:1px solid rgba(222,166,31,.55);background:#0b0b0a;color:var(--taxi);border-radius:999px;padding:7px 10px;font:500 8px/1 var(--mono);cursor:pointer}.code{background:#050505;border:1px solid var(--line);padding:28px;overflow:auto;white-space:pre;font:400 11px/1.65 var(--mono);color:var(--soft)}.checklist{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}.check{display:grid;grid-template-columns:20px 1fr;gap:12px;padding:17px 18px 17px 0;border-bottom:1px solid var(--line)}.check:nth-child(even){padding-left:18px;border-left:1px solid var(--line)}.check input{appearance:none;width:14px;height:14px;border:1px solid var(--muted);margin:2px 0 0}.check input:checked{background:var(--taxi);box-shadow:inset 0 0 0 3px var(--black)}.check label{font-size:12px;line-height:1.55;color:var(--soft)}
+footer{margin-left:248px;padding:44px 0 70px;color:var(--muted);font:400 9px/1.6 var(--mono)}
+
+/* compact brownstone preloader retained from the current system */
+.loader{position:fixed;inset:0;background:#2d211b;z-index:100;overflow:hidden;transition:visibility 0s linear 2.05s}.loader.done{visibility:hidden}.bricks{position:absolute;inset:0;display:grid;grid-template-columns:repeat(10,1fr);grid-auto-rows:9vh;gap:3px}.brick{background:linear-gradient(145deg,rgba(255,255,255,.08),transparent 24%),#8f4225;border:1px solid #321d14;transition:transform .9s cubic-bezier(.55,.03,.3,.98),opacity .6s ease;transition-delay:var(--d)}.loader.done .brick{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}.loader-mark{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.loader-mark span{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:var(--taxi);color:white;font:900 76px/1 var(--display);transition:.45s ease}.loader.done .loader-mark span{opacity:0;transform:scale(.75)}
+
+@media(max-width:980px){
+  .sidebar{width:210px}.side-title{font-size:19px}main,footer{margin-left:210px}.reading{width:min(860px,calc(100% - 54px))}.hero-grid,.two{grid-template-columns:1fr}.hero-grid{gap:34px}.logo-grid{grid-template-columns:1fr}.three{grid-template-columns:1fr 1fr}.type-row{grid-template-columns:100px 1fr}.type-row>code:last-child{display:none}.missing{gap:28px}.token-row{grid-template-columns:125px 110px 1fr}
+}
+@media(max-width:720px){
+  .sidebar{inset:0 0 auto 0;width:auto;height:66px;display:block;padding:0;border-right:0;border-bottom:1px solid var(--line);overflow:hidden}.side-brand,.side-foot{display:none}.side-nav{display:flex;margin:0;height:66px;overflow-x:auto;overflow-y:hidden;align-items:center;padding:0 20px;gap:22px;scrollbar-width:none}.side-nav::-webkit-scrollbar{display:none}.side-nav a{flex:0 0 auto;border:0;padding:0;font-size:9px}.side-nav a:hover,.side-nav a.active{padding-left:0}
+  main,footer{margin-left:0}.reading{width:calc(100% - 40px)}.section{padding:78px 0;scroll-margin-top:66px}.section:first-child{padding-top:78px}.hero{min-height:auto;padding:112px 0 70px}.hero h1{font-size:clamp(54px,16vw,82px)}.section h2{font-size:clamp(38px,11vw,56px)}.lede{font-size:16px}.brand-meta div{grid-template-columns:1fr;gap:4px}.three,.missing,.checklist,.swatches{grid-template-columns:1fr}.check:nth-child(even){padding-left:0;border-left:0}.logo-card{min-height:220px;padding:18px}.lockup{--s:36px}.lockup.stacked{--s:34px}.logo-rule,.application{grid-template-columns:1fr;gap:9px}.token-row{grid-template-columns:1fr 1fr;gap:8px}.token-row span{grid-column:1/-1}.type-row{grid-template-columns:1fr;gap:9px}.sample-display{font-size:44px}.sample-h1{font-size:36px}.sample-h2{font-size:27px}.service-card{grid-template-columns:1fr}.audit-row{grid-template-columns:1fr;gap:10px}.missing{gap:22px}.code{padding:22px 18px;font-size:9px}.bricks{grid-template-columns:repeat(6,1fr);grid-auto-rows:8vh}
+}
+@media(max-width:420px){.reading{width:calc(100% - 32px)}.hero h1{font-size:clamp(50px,15vw,68px)}.section h2{font-size:clamp(36px,10.5vw,48px)}.logo-card{min-height:205px}.lockup{--s:30px}.lockup.stacked{--s:29px}.wordmark{font-size:calc(var(--s)*.72)}.stacked .wordmark{font-size:calc(var(--s)*1.16)}.demo{padding:20px}.service-card{padding:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.loader{display:none!important}*{transition:none!important;animation:none!important}}
+</style>
 </head>
-<body class="is-preloading">
-<div id="site-preloader" class="site-preloader" role="status" aria-live="polite" aria-label="Loading the Tainá Borges Photography design system">
-  <div id="preloader-wall" class="preloader-wall" aria-hidden="true"></div>
-  <div class="preloader-mark" aria-hidden="true"><span>T</span></div>
-  <p class="preloader-caption">New York · stories · moments</p>
-</div>
-<div id="site-root"></div>
-<script src="scripts/preloader.js?v=20260804-1"></script>
-<script src="content/content-1.js"></script>
-<script src="content/content-2.js"></script>
-<script src="content/content-3.js"></script>
-<script src="content/content-4.js"></script>
-<script src="content/content-5.js"></script>
-<script src="scripts/main.js"></script>
+<body>
+<div class="loader" id="loader" aria-hidden="true"><div class="bricks" id="bricks"></div><div class="loader-mark"><span>T</span></div></div>
+<aside class="sidebar">
+  <div class="side-brand">
+    <div class="side-mark"><span class="side-disc t">T</span><span class="side-disc b">B</span><span class="side-disc cam">●</span></div>
+    <div class="side-title">tainá borges<span style="color:var(--taxi)">.</span></div>
+    <div class="side-sub">brand manual · 2026</div>
+  </div>
+  <nav class="side-nav" aria-label="Brand manual sections">
+    <a href="#foundation">Foundation</a><a href="#logos">Logos</a><a href="#colors">Colors</a><a href="#type">Typography</a><a href="#spacing">Spacing</a><a href="#components">Components</a><a href="#applications">Applications</a><a href="#audit">Audit</a><a href="#tokens">CSS tokens</a><a href="#checklist">Checklist</a>
+  </nav>
+  <div class="side-foot">Extracted from the current Tainá Borges website and design-system repository. Values marked as unresolved are intentionally not invented.</div>
+</aside>
+
+<main>
+<section class="hero">
+  <div class="reading">
+    <div class="hero-kicker">Tainá Borges Photography · extracted brand system</div>
+    <h1>the city holds the <em>moment.</em></h1>
+    <div class="hero-grid">
+      <p class="lede">A working brand manual built from the values already present in the current website and design-system repository. Photography stays primary. The system organizes the repeated choices around it without creating new brand rules.</p>
+      <div class="brand-meta">
+        <div><strong>Brand</strong><span>Tainá Borges Photography</span></div>
+        <div><strong>What it does</strong><span>Natural New York photo sessions with relaxed direction and location-led storytelling.</span></div>
+        <div><strong>Audience</strong><span>Travelers, couples, and families looking for natural photography in New York.</span></div>
+        <div><strong>Current channels</strong><span>Website; Instagram and proposals are referenced as brand applications but are not fully codified in the current repository.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="foundation"><div class="reading">
+  <div class="eyebrow">01 / foundation</div><h2>A photography system with <em>editorial restraint.</em></h2>
+  <p class="lede">The existing system repeatedly describes the brand as grounded, warm, observant, confident, and natural. It uses New York specificity instead of generic luxury cues.</p>
+  <div class="rule"></div>
+  <div class="two">
+    <div><div class="eyebrow">Visual personality · 5 extracted adjectives</div><div class="cards">
+      <div class="card"><span class="card-k">01</span><h3>Grounded</h3><p>Real locations, real light, restrained interface texture.</p></div>
+      <div class="card"><span class="card-k">02</span><h3>Warm</h3><p>Brownstone, taxi yellow, natural skin tone, late-afternoon color.</p></div>
+      <div class="card"><span class="card-k">03</span><h3>Observant</h3><p>Small moments and location details carry the story.</p></div>
+      <div class="card"><span class="card-k">04</span><h3>Confident</h3><p>Strong Poppins display type with calm supporting copy.</p></div>
+      <div class="card"><span class="card-k">05</span><h3>Natural</h3><p>Emotionally unforced imagery and direct, non-inflated language.</p></div>
+    </div></div>
+    <div><div class="eyebrow">The brand does</div><div class="split-list">
+      <div class="split-row"><b>+</b><p>Let photographs carry atmosphere.</p></div><div class="split-row"><b>+</b><p>Use city-specific details: brick, subway rhythm, parks, coastlines, available light.</p></div><div class="split-row"><b>+</b><p>Pair heavy display type with spacious body copy.</p></div><div class="split-row"><b>+</b><p>Use direct first-person or conversational copy.</p></div>
+    </div><div class="eyebrow" style="margin-top:38px">The brand avoids</div><div class="split-list"><div class="split-row"><b>−</b><p>Generic luxury language and inflated claims.</p></div><div class="split-row"><b>−</b><p>Heavy presets, aggressive desaturation, decorative shadows, and over-styled hero crops.</p></div><div class="split-row"><b>−</b><p>Changing individual logo colors or rebuilding the camera icon.</p></div></div></div>
+  </div>
+</div></section>
+
+<section class="section" id="logos"><div class="reading">
+  <div class="eyebrow">02 / logo system</div><h2>Four lockups, paired with the <em>correct surface.</em></h2>
+  <p class="lede">The compositions below are embedded directly in this HTML so the manual does not depend on external logo requests. Their colors reproduce the current logo system: Taxi #DEA61F, logo brown #874C38, black, white, and limestone.</p>
+  <div class="rule"></div>
+  <div class="logo-grid">
+    <figure class="logo-card dark"><span class="logo-label">01 · extended / light</span><div class="lockup stacked"><span class="symbols"><span class="disc t">T</span><span class="disc b">B</span><span class="disc camera"><svg class="camera-svg" viewBox="0 0 64 48" aria-hidden="true"><path d="M9 11h10l4-7h18l4 7h10c4 0 7 3 7 7v23c0 4-3 7-7 7H9c-4 0-7-3-7-7V18c0-4 3-7 7-7Z" fill="currentColor"/><circle cx="32" cy="29" r="10" fill="white"/><circle cx="32" cy="29" r="7" fill="black"/></svg></span></span><span class="wordmark">tainá borges<span class="dot">.</span></span></div><span class="logo-colorline">#DEA61F · #874C38 · #FFFFFF · #E8E2D4</span></figure>
+    <figure class="logo-card dark"><span class="logo-label">02 · horizontal / light</span><div class="lockup"><span class="symbols"><span class="disc t">T</span><span class="disc b">B</span><span class="disc camera"><svg class="camera-svg" viewBox="0 0 64 48" aria-hidden="true"><path d="M9 11h10l4-7h18l4 7h10c4 0 7 3 7 7v23c0 4-3 7-7 7H9c-4 0-7-3-7-7V18c0-4 3-7 7-7Z" fill="currentColor"/><circle cx="32" cy="29" r="10" fill="white"/><circle cx="32" cy="29" r="7" fill="black"/></svg></span></span><span class="wordmark">tainá borges<span class="dot">.</span></span></div><span class="logo-colorline">#DEA61F · #874C38 · #FFFFFF · #E8E2D4</span></figure>
+    <figure class="logo-card light"><span class="logo-label">03 · extended / dark</span><div class="lockup stacked"><span class="symbols"><span class="disc t">T</span><span class="disc b">B</span><span class="disc camera darkcam"><svg class="camera-svg" viewBox="0 0 64 48" aria-hidden="true"><path d="M9 11h10l4-7h18l4 7h10c4 0 7 3 7 7v23c0 4-3 7-7 7H9c-4 0-7-3-7-7V18c0-4 3-7 7-7Z" fill="currentColor"/><circle cx="32" cy="29" r="10" fill="black"/><circle cx="32" cy="29" r="7" fill="white"/></svg></span></span><span class="wordmark">tainá borges<span class="dot">.</span></span></div><span class="logo-colorline">#DEA61F · #874C38 · #000000</span></figure>
+    <figure class="logo-card light"><span class="logo-label">04 · horizontal / dark</span><div class="lockup"><span class="symbols"><span class="disc t">T</span><span class="disc b">B</span><span class="disc camera darkcam"><svg class="camera-svg" viewBox="0 0 64 48" aria-hidden="true"><path d="M9 11h10l4-7h18l4 7h10c4 0 7 3 7 7v23c0 4-3 7-7 7H9c-4 0-7-3-7-7V18c0-4 3-7 7-7Z" fill="currentColor"/><circle cx="32" cy="29" r="10" fill="black"/><circle cx="32" cy="29" r="7" fill="white"/></svg></span></span><span class="wordmark">tainá borges<span class="dot">.</span></span></div><span class="logo-colorline">#DEA61F · #874C38 · #000000</span></figure>
+  </div>
+  <div style="margin-top:46px"><div class="logo-rule"><code>Clear space</code><p>Current documentation uses one logo-circle diameter as the clear-space reference.</p></div><div class="logo-rule"><code>Minimum size</code><p>Horizontal: 180 px digital. Extended: 240 px digital.</p></div><div class="logo-rule"><code>Dark surfaces</code><p>Use the light variants on asphalt, black, or dark photography with a protection overlay.</p></div><div class="logo-rule"><code>Light surfaces</code><p>Use the dark variants on chalk, paper, limestone, or calm light photography.</p></div><div class="logo-rule"><code>Never</code><p>Do not stretch, recolor individual elements, add shadows, or substitute a different camera icon.</p></div></div>
+</div></section>
+
+<section class="section" id="colors"><div class="reading">
+  <div class="eyebrow">03 / color system</div><h2>Warm neutrals with recognizable <em>NYC accents.</em></h2><p class="lede">These are the exact hex values already declared in the current design-system repository.</p>
+  <div class="rule"></div><div class="swatches">
+    <div class="swatch darktxt" style="background:#161513"><strong>Asphalt</strong><code>#161513 · --asphalt · core dark</code></div><div class="swatch" style="background:#E8E2D4"><strong>Limestone</strong><code>#E8E2D4 · --limestone · core light</code></div><div class="swatch" style="background:#F4EFE5"><strong>Paper</strong><code>#F4EFE5 · --paper · elevated light</code></div><div class="swatch" style="background:#DEA61F"><strong>Taxi</strong><code>#DEA61F · --taxi · primary accent</code></div><div class="swatch darktxt" style="background:#7E4834"><strong>Brown</strong><code>#7E4834 · --brown · support / earth</code></div><div class="swatch darktxt" style="background:#A8552B"><strong>Brick</strong><code>#A8552B · --brick · link / warmth</code></div><div class="swatch" style="background:#C75A4A"><strong>Terracotta</strong><code>#C75A4A · --terracotta · error / heat</code></div><div class="swatch darktxt" style="background:#4D5A2D"><strong>Park</strong><code>#4D5A2D · --park · success / nature</code></div><div class="swatch" style="background:#7E8B9E"><strong>Steel</strong><code>#7E8B9E · --steel · cool support</code></div><div class="swatch" style="background:#FBF8F1"><strong>Chalk</strong><code>#FBF8F1 · --chalk · highest light</code></div>
+  </div>
+  <div class="rule"></div><div class="eyebrow">Semantic roles</div><div class="token-table"><div class="token-row"><code>Background</code><strong>#E8E2D4</strong><span>Default information-heavy light surfaces.</span></div><div class="token-row"><code>Dark surface</code><strong>#161513</strong><span>Hero, immersion, dark logo presentation.</span></div><div class="token-row"><code>Primary action</code><strong>#DEA61F</strong><span>One strong CTA or signature accent per view.</span></div><div class="token-row"><code>Links / warmth</code><strong>#A8552B</strong><span>Text links and warm supporting details.</span></div><div class="token-row"><code>Success</code><strong>#4D5A2D</strong><span>Confirmation and nature state.</span></div></div>
+</div></section>
+
+<section class="section" id="type"><div class="reading">
+  <div class="eyebrow">04 / typography</div><h2>Poppins Black for impact. Inter for <em>breath.</em></h2><p class="lede">JetBrains Mono is used for metadata and labels. The desktop sizes below are explicit tokens in the current documentation. Mobile values are only shown where the current CSS actually defines them.</p>
+  <div class="rule"></div><div class="type-row"><code>Display · desktop 128</code><div class="sample-display">the city.</div><code>Poppins 900 · −0.05em</code></div><div class="type-row"><code>H1 · desktop 72</code><div class="sample-h1">Photograph the moment.</div><code>Poppins 900 · −0.04em</code></div><div class="type-row"><code>H2 · desktop 44</code><div class="sample-h2">Natural New York photography.</div><code>Inter 300</code></div><div class="type-row"><code>Body · desktop 16</code><div class="sample-body">Every corner of this city holds a story.</div><code>Inter 400 · 1.55</code></div><div class="type-row"><code>Label · 11</code><div class="sample-label">Selected work · New York</div><code>JetBrains Mono 500</code></div>
+  <div class="rule"></div><div class="eyebrow">Mobile values explicitly present in CSS</div><div class="token-table"><div class="token-row"><code>Hero H1 ≤760</code><strong>54–82 px</strong><span>Responsive clamp in the current stylesheet.</span></div><div class="token-row"><code>Hero H1 ≤430</code><strong>48–70 px</strong><span>Responsive clamp in the current stylesheet.</span></div><div class="token-row"><code>Hero wordmark ≤430</code><strong>48–64 px</strong><span>Current mobile wordmark clamp.</span></div><div class="token-row"><code>Other mobile type</code><strong>Not separately tokenized</strong><span>No new size has been invented here.</span></div></div>
+</div></section>
+
+<section class="section" id="spacing"><div class="reading">
+  <div class="eyebrow">05 / spacing</div><h2>A 4-point scale with <em>editorial breathing room.</em></h2><p class="lede">The current documentation explicitly uses 4, 8, 16, 24, 48, 96, and 128 pixels. It also describes a 12-column desktop grid, 24 px internal gutters, and 32–42 px page margins.</p>
+  <div class="rule"></div><div class="space-row"><code>04</code><div class="bar-wrap"><i class="bar" style="width:4px"></i></div><span>micro</span></div><div class="space-row"><code>08</code><div class="bar-wrap"><i class="bar" style="width:8px"></i></div><span>inline</span></div><div class="space-row"><code>16</code><div class="bar-wrap"><i class="bar" style="width:16px"></i></div><span>control</span></div><div class="space-row"><code>24</code><div class="bar-wrap"><i class="bar" style="width:24px"></i></div><span>card</span></div><div class="space-row"><code>48</code><div class="bar-wrap"><i class="bar" style="width:48px"></i></div><span>group</span></div><div class="space-row"><code>96</code><div class="bar-wrap"><i class="bar" style="width:96px"></i></div><span>section</span></div><div class="space-row"><code>128</code><div class="bar-wrap"><i class="bar" style="width:128px"></i></div><span>editorial</span></div>
+</div></section>
+
+<section class="section" id="components"><div class="reading">
+  <div class="eyebrow">06 / components</div><h2>Repeated patterns rendered <em>for real.</em></h2><p class="lede">These component examples use the same button, card, field, metadata, and bilingual-friendly patterns already documented in the current system.</p>
+  <div class="rule"></div><div class="demo"><div class="demo-head"><div class="demo-logo">tainá borges<i>.</i></div><span class="small" style="color:#595750">EN · PT</span></div><div class="btn-row"><button class="btn primary">Book a session</button><button class="btn dark">See the photographs</button><button class="btn">Send a note</button></div><article class="service-card"><div><span class="tag">session card</span><h4>Natural New York photography.</h4><p>Relaxed direction, location recommendations, and photographs that feel like the day itself.</p></div><button class="btn primary">View</button></article><div class="field"><label for="demo-name">Name</label><input id="demo-name" placeholder="Your name" /></div></div>
+</div></section>
+
+<section class="section" id="applications"><div class="reading">
+  <div class="eyebrow">07 / applications</div><h2>How the system becomes a piece in each <em>documented channel.</em></h2><p class="lede">Only application rules supported by the current repository are stated as rules. Where a channel is referenced but not fully specified, it is marked as unresolved instead of inventing dimensions or templates.</p>
+  <div class="rule"></div><div class="application"><div class="channel">Website</div><div><h3>Primary production expression</h3><p>Dark immersive hero, image-first galleries, bilingual interface examples, taxi-yellow action accents, strong Poppins headings, Inter body copy, thin hairlines, restrained motion, and accessible focus states.</p><span class="status">Defined</span></div></div><div class="application"><div class="channel">Instagram</div><div><h3>Carry over the same visual grammar</h3><p>The repository supports portrait-led photography, 4:5 as a preferred ratio, warm color, occasional black-and-white pacing, Poppins display typography, and the existing palette. Exact feed templates, story dimensions, and posting hierarchy are not yet defined in the repository.</p><span class="status">Partially defined</span></div></div><div class="application"><div class="channel">Proposals</div><div><h3>Use the editorial document language</h3><p>Light paper or limestone surfaces, dark wordmark, clear hierarchy, Poppins for titles, Inter for long reading, JetBrains Mono for metadata, and hairlines before shadows. Proposal page size and reusable proposal template are not defined.</p><span class="status">Partially defined</span></div></div>
+</div></section>
+
+<section class="section" id="audit"><div class="reading">
+  <div class="eyebrow">08 / inconsistencies</div><h2>Variations that require a <em>conscious decision.</em></h2><p class="lede">These differences already exist inside the current repository. They are surfaced here rather than silently reconciled.</p>
+  <div class="rule"></div><div class="audit-row"><div class="sev">High</div><div><h3>Two brown values</h3><p>The logo construction uses #874C38 while the general Brown color token is #7E4834. Decide whether these remain intentionally separate or whether one becomes canonical.</p></div></div><div class="audit-row"><div class="sev">Medium</div><div><h3>Documented breakpoints differ from implementation breakpoints</h3><p>The spacing documentation names 720 / 1024, while current CSS also uses 430, 760, 980/1050-style responsive thresholds. A canonical breakpoint set is not yet stated.</p></div></div><div class="audit-row"><div class="sev">Medium</div><div><h3>Page margins differ between documentation and mobile implementation</h3><p>The written layout guidance says 32–42 px page margins. The current mobile fixes reduce the reading area to roughly 20–24 px side gutters on small screens.</p></div></div><div class="audit-row"><div class="sev">Low</div><div><h3>Several light neutrals are intentionally close</h3><p>Limestone #E8E2D4, Paper #F4EFE5, and Chalk #FBF8F1 are all present. Their roles are described, but channel-by-channel usage is not fully governed.</p></div></div>
+  <div style="margin-top:92px"><div class="eyebrow">09 / open decisions</div><h2>What is still missing for the system to become <em>complete.</em></h2><div class="rule"></div><div class="missing"><div class="missing-item"><span class="missing-num">01</span><h3>Canonical brown rule</h3><p>Resolve the relationship between #874C38 in the logo and #7E4834 in the general palette.</p></div><div class="missing-item"><span class="missing-num">02</span><h3>Canonical breakpoint set</h3><p>Choose the official responsive thresholds to document and reuse.</p></div><div class="missing-item"><span class="missing-num">03</span><h3>Instagram templates</h3><p>Feed, carousel, cover, story, and text-safe-area rules are not defined in the repository.</p></div><div class="missing-item"><span class="missing-num">04</span><h3>Proposal template</h3><p>Page dimensions, title-page hierarchy, pricing layout, and approval format are not defined.</p></div><div class="missing-item"><span class="missing-num">05</span><h3>Full mobile type scale</h3><p>Only hero-related mobile clamps are explicit. H2, body, caption, and label mobile tokens are not separately defined.</p></div><div class="missing-item"><span class="missing-num">06</span><h3>Image export specification</h3><p>The style and preferred ratios are documented, but delivery resolution, compression, and channel-specific exports are not.</p></div></div></div>
+</div></section>
+
+<section class="section" id="tokens"><div class="reading">
+  <div class="eyebrow">10 / CSS tokens</div><h2>Ready to <em>copy.</em></h2><p class="lede">This block reproduces values already declared in the current system. It intentionally keeps both brown values separate until the open decision is resolved.</p>
+  <div class="rule"></div><div class="code-wrap"><button class="copy-btn" id="copyTokens">Copy CSS</button><pre class="code" id="tokenCode">:root {
+  --asphalt: #161513;
+  --limestone: #E8E2D4;
+  --paper: #F4EFE5;
+  --chalk: #FBF8F1;
+  --taxi: #DEA61F;
+  --brown: #7E4834;
+  --logo-brown: #874C38;
+  --brick: #A8552B;
+  --terracotta: #C75A4A;
+  --park: #4D5A2D;
+  --steel: #7E8B9E;
+
+  --font-display: 'Poppins', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --space-04: 4px;
+  --space-08: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-48: 48px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-cinematic: cubic-bezier(.65, 0, .05, 1);
+}</pre></div>
+</div></section>
+
+<section class="section" id="checklist"><div class="reading">
+  <div class="eyebrow">11 / approval checklist</div><h2>Before you <em>publish.</em></h2><p class="lede">Use the list below as a final brand-system review before work goes live.</p>
+  <div class="rule"></div><div class="checklist"><div class="check"><input type="checkbox" id="c1"><label for="c1">Typography and visual hierarchy are consistent with the documented system.</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">Content is adapted to the intended channel rather than copied blindly.</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">The logo variant is correct for the background and has adequate clear space.</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">The logo has not been stretched, recolored, shadowed, or rebuilt.</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">Every hierarchical color belongs to the current approved palette.</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">Spacing follows the 4, 8, 16, 24, 48, 96, or 128 px scale where the system specifies it.</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">Photography preserves authentic warmth, skin tone, and location color.</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">No heavy preset, unnecessary shadow, or visually noisy crop has been introduced.</label></div><div class="check"><input type="checkbox" id="c9"><label for="c9">Text remains readable and controls retain visible focus states.</label></div><div class="check"><input type="checkbox" id="c10"><label for="c10">Motion respects reduced-motion preference and does not interrupt reading.</label></div><div class="check"><input type="checkbox" id="c11"><label for="c11">English and Portuguese versions preserve meaning and rhythm instead of literal word-for-word structure.</label></div><div class="check"><input type="checkbox" id="c12"><label for="c12">The page has zero horizontal scrolling at the target viewport.</label></div></div>
+</div></section>
+</main>
+<footer><div class="reading">© 2026 Tainá Borges Photography. All rights reserved. Brand manual extracted from the current production and design-system repositories.</div></footer>
+
+<script>
+// brownstone intro, generated in code so no external image is needed
+const loader=document.getElementById('loader'),wall=document.getElementById('bricks');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const n=110;for(let i=0;i<n;i++){const b=document.createElement('i');b.className='brick';const a=(i/n)*Math.PI*4;b.style.setProperty('--d',`${260+Math.random()*520}ms`);b.style.setProperty('--x',`${Math.cos(a)*(180+Math.random()*260)}px`);b.style.setProperty('--y',`${Math.sin(a)*(150+Math.random()*230)}px`);b.style.setProperty('--r',`${(Math.random()-.5)*28}deg`);if(i%3===0)b.style.backgroundColor='#74331e';if(i%5===0)b.style.backgroundColor='#a8522b';wall.appendChild(b)}
+  addEventListener('load',()=>setTimeout(()=>loader.classList.add('done'),520));setTimeout(()=>loader.classList.add('done'),1700)
+}else loader.remove();
+
+const links=[...document.querySelectorAll('.side-nav a')], sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-30% 0px -60% 0px'});sections.forEach(s=>io.observe(s));
+
+document.getElementById('copyTokens').addEventListener('click',async e=>{const t=document.getElementById('tokenCode').innerText;try{await navigator.clipboard.writeText(t);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy CSS',1300)}catch{e.target.textContent='Select + copy'}});
+</script>
 </body>
 </html>
