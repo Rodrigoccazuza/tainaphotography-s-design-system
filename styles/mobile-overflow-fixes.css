@@ -59,7 +59,7 @@ canvas {
   white-space: nowrap;
 }
 
-/* Prevent hero lockup and large display text from creating page overflow. */
+/* Prevent large display elements from widening the viewport. */
 .hero,
 .hero-shell,
 .hero-main,
@@ -69,24 +69,19 @@ canvas {
 .grid-2,
 .grid-3,
 .grid-4,
-.logo-grid {
+.logo-grid,
+.footer-grid {
   min-width: 0;
 }
 
-.hero-brand {
+.hero-brand,
+.footer .brand-lockup {
   width: 100%;
-  max-width: 100%;
-  overflow: visible;
-}
-
-.hero-brand .brand-lockup {
-  width: min(100%, 620px);
   max-width: 100%;
 }
 
 .hero-title h1,
 .display {
-  overflow-wrap: normal;
   text-wrap: balance;
 }
 
@@ -99,7 +94,7 @@ p,
   min-width: 0;
 }
 
-/* Logo cards: keep every logo inside the card on narrow screens. */
+/* Logo cards: keep every lockup inside the card on narrow screens. */
 .logo-grid {
   width: 100%;
   max-width: 100%;
@@ -113,24 +108,7 @@ p,
 }
 
 .logo-card .brand-lockup {
-  max-width: calc(100% - 56px);
   min-width: 0;
-}
-
-.logo-card .logo-wordmark {
-  min-width: 0;
-}
-
-.logo-card.theme-dark.extended .brand-lockup {
-  --logo-size: clamp(28px, 8vw, 42px);
-}
-
-.logo-card.theme-dark:not(.extended) .brand-lockup {
-  --logo-size: clamp(22px, 6vw, 34px);
-}
-
-.logo-card.theme-dark:not(.extended) .logo-wordmark {
-  font-size: calc(var(--logo-size) * .76);
 }
 
 .logo-card.theme-light::after,
@@ -144,7 +122,6 @@ p,
   overflow: hidden;
 }
 
-/* Fine tune phone layouts. */
 @media (max-width: 760px) {
   body {
     overflow-x: hidden;
@@ -173,29 +150,50 @@ p,
     padding-right: 26px;
   }
 
+  /* HERO: size the stacked mark from viewport width instead of desktop logo tokens. */
   .hero {
     padding-top: 92px;
     padding-bottom: 78px;
   }
 
-  .hero-brand .brand-lockup {
-    --logo-size: clamp(40px, 11.5vw, 54px);
-    width: 100%;
-    transform: none;
+  .hero-brand {
+    overflow: hidden;
   }
 
-  .hero-brand .logo-wordmark {
-    font-size: clamp(58px, 17vw, 82px);
+  .hero-brand .brand-lockup.stacked {
+    width: 100%;
     max-width: 100%;
+    --logo-size: clamp(36px, 10.8vw, 48px);
+    transform: none !important;
+  }
+
+  .hero-brand .brand-lockup.stacked .logo-symbols {
+    max-width: 100%;
+  }
+
+  .hero-brand .brand-lockup.stacked .logo-wordmark {
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(44px, 12.7vw, 58px) !important;
+    letter-spacing: -.072em;
+    white-space: nowrap;
   }
 
   .hero-title h1 {
+    width: 100%;
     max-width: 100%;
-    font-size: clamp(54px, 15.2vw, 82px) !important;
+    font-size: clamp(48px, 13.2vw, 72px) !important;
+    line-height: .89;
   }
 
-  .hero-note {
+  .hero-title .kicker,
+  .hero-note,
+  .hero-note .lead,
+  .hero-meta,
+  .hero-meta > div {
+    width: 100%;
     max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .scroll-cue {
@@ -219,33 +217,52 @@ p,
     max-width: 100%;
   }
 
-  .logo-grid {
+  /* LOGO SECTION: mobile-specific lockup scales, centered with true internal breathing room. */
+  #logo .logo-grid {
     gap: 28px;
   }
 
-  .logo-card {
+  #logo .logo-card {
     min-height: 216px;
     padding: 30px;
   }
 
-  .logo-card.theme-dark.extended .brand-lockup {
-    --logo-size: clamp(30px, 8vw, 40px);
-    transform: scale(.86);
-    transform-origin: left center;
+  #logo .logo-card.theme-dark .brand-lockup {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    transform: none !important;
+    transform-origin: center;
   }
 
-  .logo-card.theme-dark:not(.extended) .brand-lockup {
-    --logo-size: clamp(24px, 6vw, 32px);
-    transform: scale(.88);
-    transform-origin: left center;
+  #logo .logo-card.theme-dark.extended .brand-lockup.stacked {
+    --logo-size: clamp(24px, 6.8vw, 31px);
+    align-items: center;
   }
 
-  .logo-card.theme-light.extended::after {
+  #logo .logo-card.theme-dark.extended .logo-wordmark {
+    font-size: calc(var(--logo-size) * 1.14) !important;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  #logo .logo-card.theme-dark:not(.extended) .brand-lockup.horizontal {
+    --logo-size: clamp(20px, 5.7vw, 26px);
+    justify-content: center;
+  }
+
+  #logo .logo-card.theme-dark:not(.extended) .logo-wordmark {
+    font-size: calc(var(--logo-size) * .78) !important;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  #logo .logo-card.theme-light.extended::after {
     width: min(82%, 420px);
     height: 54%;
   }
 
-  .logo-card.theme-light:not(.extended)::after {
+  #logo .logo-card.theme-light:not(.extended)::after {
     width: min(84%, 420px);
     height: 38%;
   }
@@ -271,6 +288,39 @@ p,
   .file-tree {
     max-width: 100%;
   }
+
+  /* FOOTER: the stacked mark previously retained desktop sizing and clipped on the right. */
+  .footer {
+    overflow: hidden;
+  }
+
+  .footer-grid,
+  .footer-grid > * {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .footer .brand-lockup.stacked {
+    width: 100%;
+    max-width: 100%;
+    --logo-size: clamp(34px, 9.5vw, 44px);
+  }
+
+  .footer .brand-lockup.stacked .logo-wordmark {
+    width: auto;
+    max-width: 100%;
+    font-size: clamp(40px, 11.7vw, 54px) !important;
+    white-space: nowrap;
+    letter-spacing: -.07em;
+  }
+
+  .footer .meta,
+  .footer p,
+  .footer-copyright {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (max-width: 430px) {
@@ -285,44 +335,50 @@ p,
     gap: 18px;
   }
 
-  .hero-brand .brand-lockup {
-    --logo-size: clamp(34px, 10.5vw, 46px);
+  .hero-brand .brand-lockup.stacked {
+    --logo-size: clamp(32px, 9.6vw, 40px);
   }
 
-  .hero-brand .logo-wordmark {
-    font-size: clamp(48px, 15vw, 64px);
+  .hero-brand .brand-lockup.stacked .logo-wordmark {
+    font-size: clamp(40px, 11.8vw, 50px) !important;
   }
 
   .hero-title h1 {
-    font-size: clamp(48px, 14vw, 70px) !important;
+    font-size: clamp(44px, 12.6vw, 62px) !important;
   }
 
   .lead {
-    font-size: clamp(20px, 6vw, 28px);
+    font-size: clamp(19px, 5.4vw, 25px);
   }
 
-  .logo-card {
+  #logo .logo-card {
     min-height: 200px;
-    padding: 28px;
+    padding: 26px 24px;
   }
 
-  .logo-card.theme-dark.extended .brand-lockup {
-    --logo-size: clamp(26px, 7.2vw, 34px);
-    transform: scale(.82);
+  #logo .logo-card.theme-dark.extended .brand-lockup.stacked {
+    --logo-size: clamp(22px, 6.2vw, 27px);
   }
 
-  .logo-card.theme-dark:not(.extended) .brand-lockup {
-    --logo-size: clamp(20px, 5.2vw, 28px);
-    transform: scale(.84);
+  #logo .logo-card.theme-dark:not(.extended) .brand-lockup.horizontal {
+    --logo-size: clamp(18px, 5.1vw, 23px);
   }
 
-  .logo-card.theme-light.extended::after {
+  #logo .logo-card.theme-light.extended::after {
     width: 78%;
     height: 48%;
   }
 
-  .logo-card.theme-light:not(.extended)::after {
+  #logo .logo-card.theme-light:not(.extended)::after {
     width: 80%;
     height: 34%;
+  }
+
+  .footer .brand-lockup.stacked {
+    --logo-size: clamp(30px, 8.8vw, 38px);
+  }
+
+  .footer .brand-lockup.stacked .logo-wordmark {
+    font-size: clamp(36px, 10.7vw, 45px) !important;
   }
 }
